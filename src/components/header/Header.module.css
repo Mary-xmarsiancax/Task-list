@@ -1,0 +1,18 @@
+.headerWr {
+    background-color: #545454;
+}
+.headerText{
+    color: #191919;
+    padding: 1em;
+    margin-left: 8em;
+    display: inline-block
+}
+
+.headerLoginText{
+    color: #191919;
+    padding: 1em;
+    margin-left: 65em;
+    display: inline-block;
+    text-decoration: #191919;
+    text-decoration: underline ;
+}
