@@ -1,8 +1,8 @@
-import NotepadBackground from "../../img/NotepadBackground.png"
-import s from "../content/Login.module.css"
+import NotepadBackground from "../../../img/NotepadBackground.png"
+import s from "./LoginPage.module.css"
 import LoginForm from "./LoginForm";
 
-const Login = (props) => {
+const LoginPage = (props) => {
     return (
         <div className={s.loginWr}>
             <img className={s.loginBackgroundImg}
@@ -14,4 +14,4 @@ const Login = (props) => {
         </div>
     )
 }
-export default Login;
+export default LoginPage;

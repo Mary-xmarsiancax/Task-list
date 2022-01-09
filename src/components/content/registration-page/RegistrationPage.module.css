@@ -1,0 +1,18 @@
+.loginWr {
+    background-color: #c8c8c8;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.loginWr .loginBackgroundImg {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    padding: 2em;
+}
+
+.loginWr .loginFormWr {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    margin: auto;
+}

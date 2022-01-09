@@ -5,14 +5,8 @@
     grid-template-rows: repeat(3, 1fr);
 }
 
-.loginBackgroundImg {
+.loginWr .loginBackgroundImg {
     grid-column: 2/3;
     grid-row: 1/4;
     padding: 2em;
-}
-
-.loginFormWr {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    margin: auto;
 }

@@ -1,14 +1,14 @@
 import './App.css';
-import Header from "./components/header/Header";
-import Login from "./components/content/Login";
+import ContentContainer from "./components/content/contentContainer";
+import HeaderContainer from "./components/header/header-container";
 
 function App() {
-  return (
-    <div>
-        <Header/>
-        <Login/>
-    </div>
-  );
+    return (
+            <div>
+                <HeaderContainer/>
+                <ContentContainer/>
+            </div>
+    );
 }
 
 export default App;

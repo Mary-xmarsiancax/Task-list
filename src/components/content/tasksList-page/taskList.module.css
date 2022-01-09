@@ -1,0 +1,8 @@
+.taskListWr{
+    background-color: #c8c8c8;
+    min-height: 600px;
+}
+
+.tasksField{
+    padding: 15px;
+}
