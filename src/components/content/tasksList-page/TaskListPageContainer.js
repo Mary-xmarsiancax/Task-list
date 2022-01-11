@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 import TaskListPage from "./taskListPage";
 
 const TaskListPageContainer = (props) => {
+    let taskEl = props.newTasksData.map(obj=>
+        <TaskListPage text={obj.text}/>
+    )
     const addTasksInput = () => {
 
     }
@@ -11,16 +14,12 @@ const TaskListPageContainer = (props) => {
         <div className={s.taskListWr}>
             <Button variant="contained" onClick={addTasksInput}>add new Task</Button>
             <div className={s.taskZone}>
-                <TaskListPage/>
+                {taskEl}
             </div>
         </div>
     )
 }
 const mapStateToProps = (state) => ({
-    id:state.tasksList.id,
-    text:state.tasksList.text ,
-    color:state.tasksList.color ,
-    label:state.tasksList. label,
-    backgroundColor:state.tasksList.backgroundColor
+    newTasksData:state.tasksList.newTasksData
 })
 export default connect(mapStateToProps)(TaskListPageContainer);

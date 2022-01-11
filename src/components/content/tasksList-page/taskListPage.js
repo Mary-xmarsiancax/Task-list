@@ -5,10 +5,7 @@ const TaskListPage =(props)=>{
     return(
         <div className={s.taskBlock}>
         <img src={note} alt="noteBackground"/>
-        <p>2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti doloribus et id ipsam
-            numquam
-            perferendis quidem voluptas.
-        </p>
+        <p>{props.text}</p>
     </div>
     )
 }
