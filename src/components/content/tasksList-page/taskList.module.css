@@ -18,3 +18,15 @@
     font-family: Consolas;
     font-size: large;
 }
+.taskBlock Button{
+    width: 90px;
+    height: 40px;
+}
+.taskBlock .saveTasksBtn{
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+.taskBlock .deleteTasksBtn{
+    grid-column: 3/4;
+    grid-row: 4/5;
+}

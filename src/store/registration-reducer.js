@@ -11,7 +11,6 @@ let initialState = {
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_REGISTRATION_DATA: {
-            console.log(action.data)
             return {
                 ...state,
                 ...action.data

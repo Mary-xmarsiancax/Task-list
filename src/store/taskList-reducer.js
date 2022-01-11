@@ -21,7 +21,8 @@ let initialState = {
             color: "",
             label: "",
             backgroundColor: ""},
-    ]
+    ],
+    editMode: true
 
 }
 
