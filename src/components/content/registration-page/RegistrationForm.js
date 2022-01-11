@@ -15,7 +15,6 @@ const RegistrationForm = () => {
         usersApi.usersRegistration(data)
             .then(response => {
                     let {id, username, token} = response.data;
-                console.log(response.data);
                 dispatch(setRegistrationData({id, username, token,isAuth: true} ))
                 }
             )

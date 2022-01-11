@@ -1,8 +1,20 @@
-.taskListWr{
-    background-color: #c8c8c8;
-    min-height: 600px;
-}
 
-.tasksField{
-    padding: 15px;
+
+
+.taskBlock{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.taskBlock img{
+    grid-column: 1/5;
+    grid-row: 1/5;
+    width: 100%;
+}
+.taskBlock p{
+    grid-column: 2/4;
+    grid-row: 2/4;
+    font-family: Consolas;
+    font-size: large;
 }

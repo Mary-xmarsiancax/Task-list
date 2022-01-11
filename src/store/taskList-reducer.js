@@ -1,7 +1,7 @@
 const ADD_TASK = "ADD_TASK"
 let initialState = {
-    id: null,
-    text: "aaa",
+    id: 1,
+    text: "У попа была собака, он ее любил.Она съела кусок мяса, он ее казнил",
     color: "",
     label: "",
     backgroundColor: ""
