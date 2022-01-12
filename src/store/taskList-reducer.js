@@ -22,7 +22,7 @@ let initialState = {
             label: "",
             backgroundColor: ""},
     ],
-    editMode: true
+    editMode: false
 
 }
 

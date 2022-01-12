@@ -7,7 +7,7 @@ import {Navigate} from "react-router-dom";
 const TaskListPageContainer = (props) => {
     if (!props.isAuth) return <Navigate to={"/login"} replace={true}/>
     let taskEl = props.newTasksData.map(obj =>
-        <TaskListPage  key={obj.id} text={obj.text}/>
+        <TaskListPage editMode={props.editMode} key={obj.id} text={obj.text}/>
     )
     const addTasksInput = () => {
 

@@ -6,7 +6,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 
 const TaskListPage = (props) => {
-
+    console.log(props.editMode);
     const toActiveEditMode = (props) => {
         props.editMode(true)
     }
@@ -17,8 +17,11 @@ const TaskListPage = (props) => {
         <div className={s.taskBlock} onClick={toActiveEditMode} onBlur={deactivationEditMode}>
             <img src={note} alt="noteBackground"/>
             <p>{props.text}</p>
-            {props.editMode} <Button className={s.saveTasksBtn} variant="contained" endIcon={<SendIcon />}>Save</Button>
-             <Button className={s.deleteTasksBtn} variant="outlined" startIcon={<DeleteIcon />}>Delete</Button>
+            {props.editMode &&
+            <div className={s.tasksBtn}>
+                <Button className={s.saveTasksBtn} variant="contained" endIcon={<SendIcon />}>Save</Button>
+                <Button className={s.deleteTasksBtn} variant="outlined" startIcon={<DeleteIcon />}>Delete</Button>
+            </div>}
         </div>
     )
 }
