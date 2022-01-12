@@ -1,3 +1,8 @@
+.taskZone{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .taskBlock{
     margin: 10px;
     display: grid;
@@ -18,16 +23,19 @@
 .taskBlock .tasksBtn{
     grid-column: 2/4;
     grid-row: 4/5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 .taskBlock Button{
     width: 90px;
     height: 40px;
 }
-.taskBlock .saveTasksBtn{
-    grid-column: 2/3;
-    grid-row: 4/5;
+.taskBlock .tasksBtn .saveTasksBtn{
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
-.taskBlock .deleteTasksBtn{
-    grid-column: 3/4;
-    grid-row: 4/5;
+.taskBlock .tasksBtn .deleteTasksBtn{
+    grid-column: 2/3;
+    grid-row: 1/2;
 }

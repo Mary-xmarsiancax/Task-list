@@ -2,19 +2,20 @@
     background-color: #c8c8c8;
     min-height: 500px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 0.3fr auto;
+    /*grid-template-columns: repeat(3, 1fr);*/
+    grid-template-rows: 1fr auto;
 }
 .taskListWr button{
-    grid-column: 2/3;
+    max-height: 35px;
+   align-items: center;
     grid-row: 1/2;
-    padding: 3px;
-    margin: 5px;
+    padding: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 5px;
 }
 
 .taskListWr .taskZone{
     grid-column: 1/4;
     grid-row: 2/auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
 }
