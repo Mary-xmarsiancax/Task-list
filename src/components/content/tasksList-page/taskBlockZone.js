@@ -39,9 +39,9 @@ const TaskBlockZone = (props) => {
             {/*<p>{obj.text}</p>*/}
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
-                <Button onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"
+                <Button size="small" onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"
                         endIcon={<SendIcon/>}>Save</Button>
-                <Button onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn} variant="outlined"
+                <Button size="small" onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn} variant="outlined"
                         startIcon={<DeleteIcon/>}>Delete</Button>
             </div>
             }
