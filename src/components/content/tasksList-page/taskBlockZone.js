@@ -10,6 +10,7 @@ import {taskDelete} from "../../../store/taskList-reducer";
 const TaskBlockZone = (props) => {
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
+
     const onSelectedTask = (id) => {
         setSelectedId(id)
     }

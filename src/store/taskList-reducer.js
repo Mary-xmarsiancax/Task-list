@@ -46,16 +46,14 @@ let initialState = {
 const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TASK: {
-            console.log("I locate to reducer add task")
+            const newTasksData = [...state.newTasksData];
+            newTasksData.push({id: 155,
+                text: "",
+                color: "",
+                label: "",
+                backgroundColor: ""});
             return {
-                ...state,
-                ...state.newTasksData.push(
-                    {id: 155,
-                    text: "",
-                    color: "",
-                    label: "",
-                    backgroundColor: ""}
-                )
+                newTasksData
             }
         }
         case TASK_DELETE: {
