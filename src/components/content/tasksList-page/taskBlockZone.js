@@ -7,6 +7,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {taskDelete} from "../../../store/taskList-reducer";
 
+
 const TaskBlockZone = (props) => {
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
@@ -31,7 +32,11 @@ const TaskBlockZone = (props) => {
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
-            <p>{obj.text}</p>
+            <textarea className={s.textareaForTasks}
+                placeholder="you can write there"
+                value={obj.text}
+            />
+            {/*<p>{obj.text}</p>*/}
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
                 <Button onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"
