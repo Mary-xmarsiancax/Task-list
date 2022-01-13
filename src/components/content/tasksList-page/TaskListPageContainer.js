@@ -19,13 +19,13 @@ const TaskListPageContainer = (props) => {
     return (
         <div className={s.taskListWr}>
             <Button variant="contained" onClick={addTasksInput} className={s.addTasksBtn}>add new Task</Button>
-            <TaskBlockZone newTasksData={props.newTasksData}/>
+            <TaskBlockZone tasks={props.tasks}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    newTasksData: state.tasksList.newTasksData,
+    tasks: state.tasksList.tasks,
     isAuth: state.registration.isAuth,
     editMode: state.tasksList.editMode,
 

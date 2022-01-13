@@ -9,7 +9,7 @@ export const taskDelete = (id) => ({type:TASK_DELETE,id})
 
 
 let initialState = {
-    newTasksData: [
+    tasks: [
         {
             id: 1,
             text: "У попа была собака, он ее любил.Она съела кусок мяса, он ее казнил",
@@ -46,20 +46,20 @@ let initialState = {
 const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TASK: {
-            const newTasksData = [...state.newTasksData];
-            newTasksData.push({id: 155,
+            const tasks = [...state.tasks];
+            tasks.push({id: 155,
                 text: "",
                 color: "",
                 label: "",
                 backgroundColor: ""});
             return {
-                newTasksData
+                tasks
             }
         }
         case TASK_DELETE: {
             return {
                 ...state,
-                newTasksData: state.newTasksData.filter((obj) => {
+                tasks: state.tasks.filter((obj) => {
                     return obj.id !== action.id
                 })
             }

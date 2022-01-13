@@ -28,7 +28,7 @@ const TaskBlockZone = (props) => {
         dispatch(taskDelete(id))
     }
 
-    const taskBlockZone = props.newTasksData.map(obj =>
+    const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
             <p>{obj.text}</p>
