@@ -1,8 +1,11 @@
 const ADD_TASK = "ADD_TASK"
 const CHANGED_EDIT_MODE = "CHANGED_EDIT_MODE"
+const TASK_DELETE = "TASK_DELETE"
 
-const addTask = () => ({type:ADD_TASK})
+export const addTask = () => ({type:ADD_TASK})
 export const changedEditMode = (mode) => ({type:CHANGED_EDIT_MODE,mode})
+export const taskDelete = (id) => ({type:TASK_DELETE,id})
+
 
 
 let initialState = {
@@ -43,7 +46,25 @@ let initialState = {
 const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TASK: {
-            return {}
+            console.log("I locate to reducer add task")
+            return {
+                ...state,
+                ...state.newTasksData.push(
+                    {id: 155,
+                    text: "",
+                    color: "",
+                    label: "",
+                    backgroundColor: ""}
+                )
+            }
+        }
+        case TASK_DELETE: {
+            return {
+                ...state,
+                newTasksData: state.newTasksData.filter((obj) => {
+                    return obj.id !== action.id
+                })
+            }
         }
         case CHANGED_EDIT_MODE: {
             return {

@@ -5,8 +5,9 @@ import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
+import {taskDelete} from "../../../store/taskList-reducer";
 
-const TaskBlock = (props) => {
+const TaskBlockZone = (props) => {
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
     const onSelectedTask = (id) => {
@@ -18,28 +19,33 @@ const TaskBlock = (props) => {
         console.log("i dispatch action for changed editMode to true")
     }
 
-    const deactivationEditMode = (props) => {
+    const deactivationEditMode = () => {
         dispatch(props.changedEditMode(false))
     }
 
-    const taskEl = props.newTasksData.map(obj =>
+    const tasksDelete = (id) => {
+        dispatch(taskDelete(id))
+    }
+
+    const taskBlockZone = props.newTasksData.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
             <p>{obj.text}</p>
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
-                <Button onClick={{deactivationEditMode}} className={s.saveTasksBtn} variant="contained"
+                <Button onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"
                         endIcon={<SendIcon/>}>Save</Button>
-                <Button className={s.deleteTasksBtn} variant="outlined" startIcon={<DeleteIcon/>}>Delete</Button>
+                <Button onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn} variant="outlined"
+                        startIcon={<DeleteIcon/>}>Delete</Button>
             </div>
             }
         </div>
     )
 
     return (
-       <div className={s.taskZone}>
-           {taskEl}
-       </div>
+        <div className={s.taskBlocks}>
+            {taskBlockZone}
+        </div>
     )
 }
-export default TaskBlock;
+export default TaskBlockZone;

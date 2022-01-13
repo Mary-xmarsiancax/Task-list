@@ -1,4 +1,5 @@
-.taskZone{
+.taskBlocks{
+    grid-row: 2/3;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -20,22 +21,22 @@
     font-family: Consolas;
     font-size: large;
 }
-.taskBlock .tasksBtn{
+.taskBlocks .taskBlock .tasksBtn{
     grid-column: 2/4;
     grid-row: 4/5;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
-.taskBlock Button{
+.taskBlocks .taskBlock Button{
     width: 90px;
     height: 40px;
 }
-.taskBlock .tasksBtn .saveTasksBtn{
+.taskBlocks .taskBlock .tasksBtn .saveTasksBtn{
     grid-column: 1/2;
     grid-row: 1/2;
 }
-.taskBlock .tasksBtn .deleteTasksBtn{
+.taskBlocks .taskBlock .tasksBtn .deleteTasksBtn{
     grid-column: 2/3;
     grid-row: 1/2;
 }
