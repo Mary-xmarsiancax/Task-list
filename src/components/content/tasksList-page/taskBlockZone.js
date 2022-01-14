@@ -3,9 +3,9 @@ import note from "../../../img/images (2).png";
 import {Button} from "@mui/material";
 import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {useState} from "react";
+import {createRef, useState} from "react";
 import {useDispatch} from "react-redux";
-import {taskDelete} from "../../../store/taskList-reducer";
+import {changeText, taskDelete} from "../../../store/taskList-reducer";
 
 
 const TaskBlockZone = (props) => {
@@ -29,14 +29,19 @@ const TaskBlockZone = (props) => {
         dispatch(taskDelete(id))
     }
 
+    const changeTextInput = (id,e) => {
+        let text = e.target.value;
+        dispatch((changeText(id, text)));
+        console.log(id, text);
+    }
+
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
-            <textarea className={s.textareaForTasks}
-                placeholder="you can write there"
-                value={obj.text}
+            <textarea onChange={(event)=>changeTextInput(obj.id,event)}  className={s.textareaForTasks}
+                      placeholder="you can write there"
+                      value={obj.text}
             />
-            {/*<p>{obj.text}</p>*/}
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
                 <Button size="small" onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"

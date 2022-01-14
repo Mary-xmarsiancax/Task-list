@@ -1,11 +1,12 @@
 const ADD_TASK = "ADD_TASK"
 const CHANGED_EDIT_MODE = "CHANGED_EDIT_MODE"
 const TASK_DELETE = "TASK_DELETE"
+const CHANGE_TEXT = "CHANGE_TEXT"
 
-export const addTask = () => ({type:ADD_TASK})
-export const changedEditMode = (mode) => ({type:CHANGED_EDIT_MODE,mode})
-export const taskDelete = (id) => ({type:TASK_DELETE,id})
-
+export const addTask = () => ({type: ADD_TASK})
+export const changedEditMode = (mode) => ({type: CHANGED_EDIT_MODE, mode})
+export const taskDelete = (id) => ({type: TASK_DELETE, id})
+export const changeText = (id, text) => ({type: CHANGE_TEXT, id, text})
 
 
 let initialState = {
@@ -47,11 +48,13 @@ const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TASK: {
             const tasks = [...state.tasks];
-            tasks.push({id: 155,
+            tasks.push({
+                id: 155,
                 text: "",
                 color: "",
                 label: "",
-                backgroundColor: ""});
+                backgroundColor: ""
+            });
             return {
                 tasks
             }
@@ -66,8 +69,18 @@ const taskListReducer = (state = initialState, action) => {
         }
         case CHANGED_EDIT_MODE: {
             return {
-              ...state,editMode: action.mode
+                ...state, editMode: action.mode
             }
+        }
+        case CHANGE_TEXT: {
+            let selectedObj = state.tasks.find((obj) => {
+                return obj.id === action.id
+            })
+            let objCopy = {...selectedObj}
+            objCopy.text = action.text
+            let arrCopy = [...state.tasks]
+            arrCopy[arrCopy.indexOf(selectedObj)] = objCopy;
+            return {...state, tasks: arrCopy}
         }
         default:
             return state;
