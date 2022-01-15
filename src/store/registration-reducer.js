@@ -11,10 +11,13 @@ let initialState = {
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_REGISTRATION_DATA: {
-            return {
-                ...state,
-                ...action.data
-            }
+            let copyState = {...state}
+            copyState = action.data
+            return copyState
+            // return {
+            //     ...state,
+            //     ...action.data
+            // }
         }
         default:
             return state;

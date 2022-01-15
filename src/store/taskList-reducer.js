@@ -49,7 +49,7 @@ const taskListReducer = (state = initialState, action) => {
         case ADD_TASK: {
             const tasks = [...state.tasks];
             tasks.push({
-                id: 155,
+                id: 6,
                 text: "",
                 color: "",
                 label: "",
@@ -60,17 +60,23 @@ const taskListReducer = (state = initialState, action) => {
             }
         }
         case TASK_DELETE: {
-            return {
-                ...state,
-                tasks: state.tasks.filter((obj) => {
-                    return obj.id !== action.id
-                })
-            }
+            let copyState = {...state}
+            let newTaskArr = copyState.tasks.filter((obj)=>{
+                return obj.id !== action.id
+            })
+            copyState.tasks = newTaskArr
+            return copyState
+                // {...state,
+                // tasks: state.tasks.filter((obj) => {
+                //     return obj.id !== action.id
+                // })}
         }
         case CHANGED_EDIT_MODE: {
-            return {
-                ...state, editMode: action.mode
-            }
+            let copyState = {...state}
+            copyState.editMode = action.editMode
+            return copyState
+                // {...state, editMode: action.mode}
+
         }
         case CHANGE_TEXT: {
             let selectedObj = state.tasks.find((obj) => {

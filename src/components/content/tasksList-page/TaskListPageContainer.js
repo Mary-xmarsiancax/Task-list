@@ -12,7 +12,6 @@ const TaskListPageContainer = (props) => {
 
 
     const addTasksInput = () => {
-        console.log("i locate to addTasksInput func ")
         dispatch(addTask())
     }
 
