@@ -28,6 +28,9 @@ const RegistrationForm = () => {
                 <div className={s.password + "" + s.loginInput}>
                     <TextField id="filled-basic" label="password" variant="filled"  {...register("password")}/>
                 </div>
+                <div className={s.password + "" + s.loginInput}>
+                    <TextField id="filled-basic" label="repeat password" variant="filled"  {...register("password")}/>
+                </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">
                         Send
