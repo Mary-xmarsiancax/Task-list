@@ -14,10 +14,6 @@ const registrationReducer = (state = initialState, action) => {
             let copyState = {...state}
             copyState = action.data
             return copyState
-            // return {
-            //     ...state,
-            //     ...action.data
-            // }
         }
         default:
             return state;

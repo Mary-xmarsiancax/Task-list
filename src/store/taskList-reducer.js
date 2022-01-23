@@ -66,16 +66,11 @@ const taskListReducer = (state = initialState, action) => {
             })
             copyState.tasks = newTaskArr
             return copyState
-                // {...state,
-                // tasks: state.tasks.filter((obj) => {
-                //     return obj.id !== action.id
-                // })}
         }
         case CHANGED_EDIT_MODE: {
             let copyState = {...state}
             copyState.editMode = action.editMode
             return copyState
-                // {...state, editMode: action.mode}
 
         }
         case CHANGE_TEXT: {
