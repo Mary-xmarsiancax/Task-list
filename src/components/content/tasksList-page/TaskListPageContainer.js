@@ -2,13 +2,25 @@ import s from "./TaskListPageContainer.module.css"
 import {Button} from "@mui/material";
 import {connect, useDispatch} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {addTask, changedEditMode, changeText, taskDelete} from "../../../store/taskList-reducer";
+import {addTask, changedEditMode, changeText, setTasks, taskDelete} from "../../../store/taskList-reducer";
 import TaskBlockZone from "./taskBlockZone";
+import {tasksApi} from "../../../api/api";
+import {useEffect} from "react";
 
 
 const TaskListPageContainer = (props) => {
+    useEffect(() => {
+        if (props.isAuth) {
+            tasksApi.getTasks()
+                .then(response => {
+                    dispatch(setTasks(response.data))
+                })
+        }
+    }, [props.isAuth])
+
+
     const dispatch = useDispatch()
-    // if (!props.isAuth) return <Navigate to={"/login"} replace={true}/>
+
 
 
     const addTasksInput = () => {
@@ -29,4 +41,10 @@ const mapStateToProps = (state) => ({
     editMode: state.tasksList.editMode,
 
 })
-export default connect(mapStateToProps, {changedEditMode, taskDelete, addTask, changeText})(TaskListPageContainer);
+export default connect(mapStateToProps, {
+    changedEditMode,
+    taskDelete,
+    addTask,
+    changeText,
+    setTasks
+})(TaskListPageContainer);

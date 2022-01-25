@@ -1,7 +1,28 @@
 import s from "../header/Header.module.css"
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+import {usersApi} from "../../api/api";
+import {setRegistrationData} from "../../store/registration-reducer";
+import {useDispatch} from "react-redux";
 
 const Header = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+
+            usersApi.getCurrentUser()
+                .then(response => {
+                    console.log(response)
+                    dispatch(setRegistrationData({...response.data, isAuth: true}));
+                }, err => navigate('/login', {replace: true}))
+        } else {
+            if (!props.isAuth) {
+                navigate('/login', {replace: true})
+            }
+        }
+    }, [])
+
     return (
         <div className={s.headerWr}>
             <div className={s.headerText}>

@@ -5,10 +5,12 @@ import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {createRef, useState} from "react";
 import {useDispatch} from "react-redux";
-import {changeText, taskDelete} from "../../../store/taskList-reducer";
+import {changedEditMode, changeText, setTasks, taskDelete} from "../../../store/taskList-reducer";
+import {tasksApi} from "../../../api/api";
 
 
 const TaskBlockZone = (props) => {
+    console.log(props.tasks);
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
 
@@ -22,29 +24,43 @@ const TaskBlockZone = (props) => {
     }
 
     const deactivationEditMode = () => {
-        dispatch(props.changedEditMode(false))
+        dispatch(changedEditMode(false))
     }
 
     const tasksDelete = (id) => {
-        dispatch(taskDelete(id))
+        tasksApi.deleteTask(id)
+            .then(response=>{
+                if(response.data.statusText === "OK"){
+                    dispatch(taskDelete(id))
+                }
+            })
     }
 
-    const changeTextInput = (id,e) => {
+    const changeTextInput = (id, e) => {
         let text = e.target.value;
         dispatch((changeText(id, text)));
-        console.log(id, text);
+    }
+    const onTaskSave = (data) => {
+        tasksApi.setTask(data)
+            .then(response=>{
+               tasksApi.getTasks()
+                   .then(response=>{
+                      dispatch(setTasks(response.data))
+                   })
+            })
+        deactivationEditMode()
     }
 
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
-            <textarea onChange={(event)=>changeTextInput(obj.id,event)}  className={s.textareaForTasks}
+            <textarea onChange={(event) => changeTextInput(obj.id, event)} className={s.textareaForTasks}
                       placeholder="you can write there"
                       value={obj.text}
             />
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
-                <Button size="small" onClick={deactivationEditMode} className={s.saveTasksBtn} variant="contained"
+                <Button size="small" onClick={()=>onTaskSave(obj.text)} className={s.saveTasksBtn} variant="contained"
                         endIcon={<SendIcon/>}>Save</Button>
                 <Button size="small" onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn} variant="outlined"
                         startIcon={<DeleteIcon/>}>Delete</Button>

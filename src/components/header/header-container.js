@@ -1,7 +1,6 @@
 import Header from "./Header";
 import {connect} from "react-redux";
 
-
 const HeaderContainer = (props) => {
     return (
         <div>
@@ -10,6 +9,6 @@ const HeaderContainer = (props) => {
     )
 }
 const mapStateToProps = (state) => ({
-    username:state.registration.username
+    username: state.registration.username
 })
 export default connect(mapStateToProps)(HeaderContainer);

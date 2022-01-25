@@ -10,7 +10,6 @@ const RegistrationForm = () => {
     const dispatch = useDispatch()
     const {register,handleSubmit}=useForm()
     const onSubmit = (data) => {
-        console.log(data)
         usersApi.usersLogin(data)
             .then(response=>{
                     let {id, username, token} = response.data;
@@ -23,10 +22,10 @@ const RegistrationForm = () => {
         <div className={s.loginFormWr}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.userName + "" + s.loginInput}>
-                        <TextField id="filled-basic" label="username" variant="filled"  {...register("username")}/>
+                        <TextField  label="username" variant="filled"  {...register("username")}/>
                 </div>
                 <div className={s.password + "" + s.loginInput}>
-                    <TextField id="filled-basic" label="password" variant="filled" type="password" {...register("password")}/>
+                    <TextField  label="password" variant="filled" type="password" {...register("password")}/>
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">

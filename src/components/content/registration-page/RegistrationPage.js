@@ -9,7 +9,7 @@ const RegistrationPage = (props) => {
                 src={NotepadBackground}
                 alt="Notepad logo"/>
             <div className={s.loginFormWr}>
-                <RegistrationForm/>
+                <RegistrationForm />
             </div>
         </div>
     )

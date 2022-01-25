@@ -27,16 +27,13 @@ export const usersApi = {
         return instance.get(`/users/current`)
     }
 }
-if (localStorage.getItem("token")) {
-    usersApi.getCurrentUser()
-        .then(response=>console.log("i got data of current user"))
-}
+
 export const tasksApi = {
     getTasks() {
         return instance.get(`/notes`)
     },
-    setTask(text) {
-        return instance.post(`/notes`, text)
+    setTask(data) {
+        return instance.post(`/notes`, {text:data})
     },
     updateTask(text, id) {
         return instance.put(`/notes`, text)//id отправлять с запросом

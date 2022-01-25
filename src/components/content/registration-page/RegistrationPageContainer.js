@@ -1,11 +1,13 @@
 import RegistrationPage from "./RegistrationPage";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
+import {tasksApi} from "../../../api/api";
 
 
 
 const RegistrationPageContainer = (props) => {
     if (props.isAuth) return <Navigate  to={"/taskList"} replace={true}/>
+
     return (
         <RegistrationPage/>
     )
