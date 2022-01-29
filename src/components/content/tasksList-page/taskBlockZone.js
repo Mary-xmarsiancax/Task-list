@@ -10,7 +10,6 @@ import {tasksApi} from "../../../api/api";
 
 
 const TaskBlockZone = (props) => {
-    console.log(props.tasks);
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
 
@@ -29,11 +28,11 @@ const TaskBlockZone = (props) => {
 
     const tasksDelete = (id) => {
         tasksApi.deleteTask(id)
-            .then(response=>{
-                if(response.data.statusText === "OK"){
-                    dispatch(taskDelete(id))
-                }
+            .then(response=> {
+                console.log(response);
             })
+                // if(response.data.statusText === "OK"){
+                    dispatch(taskDelete(id))
     }
 
     const changeTextInput = (id, e) => {

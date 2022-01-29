@@ -1,7 +1,7 @@
 import s from "../header/Header.module.css"
-import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
-import {usersApi} from "../../api/api";
+import {setAuthorizationHeader, usersApi} from "../../api/api";
 import {setRegistrationData} from "../../store/registration-reducer";
 import {useDispatch} from "react-redux";
 
@@ -13,15 +13,30 @@ const Header = (props) => {
 
             usersApi.getCurrentUser()
                 .then(response => {
-                    console.log(response)
-                    dispatch(setRegistrationData({...response.data, isAuth: true}));
-                }, err => navigate('/login', {replace: true}))
+                    dispatch(setRegistrationData({...response.data}));
+                }, err => {
+                    setAuthorizationHeader("");
+                    navigate('/login', {replace: true})
+                })
         } else {
-            if (!props.isAuth) {
                 navigate('/login', {replace: true})
-            }
         }
     }, [])
+
+    const onLogout = () => {
+        usersApi.usersLogout()
+        usersApi.getCurrentUser()
+            .then(response => {
+                dispatch(setRegistrationData({...response.data}));
+            }, err => {
+                setAuthorizationHeader("");
+                navigate('/login', {replace: true})
+                dispatch(setRegistrationData(
+                    {id: null,
+                    username: ""})
+                )
+            })
+    }
 
     return (
         <div className={s.headerWr}>
@@ -31,7 +46,7 @@ const Header = (props) => {
             {props.username ?
                 <div className={s.headerLoginText}>
                     {props.username}
-                    <button className={s.logoutBtn}>Logout</button>
+                    <button onClick={onLogout} className={s.logoutBtn}>Logout</button>
                 </div>
                 :
                 <div className={s.headerLoginText}>

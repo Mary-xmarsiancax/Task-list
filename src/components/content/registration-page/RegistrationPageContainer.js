@@ -1,18 +1,17 @@
 import RegistrationPage from "./RegistrationPage";
-import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
-import {tasksApi} from "../../../api/api";
+import {useNavigate} from "react-router-dom";
+
 
 
 
 const RegistrationPageContainer = (props) => {
-    if (props.isAuth) return <Navigate  to={"/taskList"} replace={true}/>
-
+    let navigate = useNavigate();
+    if (localStorage.getItem("token")) {
+        navigate ("/taskList", {replace: true})
+    }
     return (
         <RegistrationPage/>
     )
 }
-const mapStateToProps = (state) => ({
-    isAuth: state.registration.isAuth
-})
-export default connect(mapStateToProps)(RegistrationPageContainer);
+
+export default RegistrationPageContainer;

@@ -5,8 +5,10 @@ import {Button, Input, TextField} from "@mui/material";
 import {setAuthorizationHeader, usersApi} from "../../../api/api";
 import {setRegistrationData} from "../../../store/registration-reducer";
 import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
-const RegistrationForm = () => {
+const LoginForm = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register,handleSubmit}=useForm()
     const onSubmit = (data) => {
@@ -15,7 +17,8 @@ const RegistrationForm = () => {
                     let {id, username, token} = response.data;
                     dispatch(setRegistrationData({id, username, token,isAuth: true} ))
                     localStorage.setItem("token", token)
-                    setAuthorizationHeader(token)
+                    setAuthorizationHeader(token);
+                    navigate ("/taskList", {replace: true})
             })
     }
     return (
@@ -37,4 +40,4 @@ const RegistrationForm = () => {
 
     )
 }
-export default RegistrationForm;
+export default LoginForm;

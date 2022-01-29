@@ -5,21 +5,22 @@ import {Button, Input, TextField} from "@mui/material";
 import {setAuthorizationHeader, usersApi} from "../../../api/api";
 import {setRegistrationData} from "../../../store/registration-reducer";
 import {connect, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 const RegistrationForm = () => {
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     const {register, handleSubmit} = useForm()
     const onSubmit = (data) => {
         usersApi.usersRegistration(data)
             .then(response => {
-                    let {id, username, token} = response.data;
-                dispatch(setRegistrationData({id, username, token,isAuth: true} ))
-                localStorage.setItem("token", token)
-                setAuthorizationHeader(token)
-                usersApi.getCurrentUser()
-                    .then(response => console.log("после запроса на текущего юзера,я получаю: " + response.data))
+                    let {id, username} = response.data;
+                    let {token} = response.data
+                    dispatch(setRegistrationData({id, username}))
+                    localStorage.setItem("token", token)
+                    setAuthorizationHeader(token)
+                    navigate("/taskList", {replace: true})
                 }
             )
     }
@@ -46,4 +47,4 @@ const RegistrationForm = () => {
     )
 }
 
-export default connect(null,{setRegistrationData} )(RegistrationForm);
+export default RegistrationForm;

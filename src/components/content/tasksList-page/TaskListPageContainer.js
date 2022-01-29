@@ -10,13 +10,13 @@ import {useEffect} from "react";
 
 const TaskListPageContainer = (props) => {
     useEffect(() => {
-        if (props.isAuth) {
+        if (localStorage.getItem("token")) {
             tasksApi.getTasks()
                 .then(response => {
                     dispatch(setTasks(response.data))
                 })
         }
-    }, [props.isAuth])
+    }, [localStorage.getItem("token")])
 
 
     const dispatch = useDispatch()
@@ -37,7 +37,6 @@ const TaskListPageContainer = (props) => {
 
 const mapStateToProps = (state) => ({
     tasks: state.tasksList.tasks,
-    isAuth: state.registration.isAuth,
     editMode: state.tasksList.editMode,
 
 })

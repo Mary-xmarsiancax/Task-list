@@ -8,8 +8,12 @@ export const setAuthorizationHeader = (token) => {
     if (token) {
         instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
-        instance.defaults.headers.common['Authorization'] = "";
+        tokenDelete()
     }
+}
+const tokenDelete = () => {
+    localStorage.removeItem("token")
+    delete instance.defaults.headers.common['Authorization'];
 }
 setAuthorizationHeader(localStorage.getItem("token"))
 
@@ -21,7 +25,7 @@ export const usersApi = {
         return instance.post(`/users/login`, data)
     },
     usersLogout() {
-        return //будет нужно удалить token  и авторизация "слетит"
+        tokenDelete()
     },
     getCurrentUser() {
         return instance.get(`/users/current`)
@@ -33,7 +37,7 @@ export const tasksApi = {
         return instance.get(`/notes`)
     },
     setTask(data) {
-        return instance.post(`/notes`, {text:data})
+        return instance.post(`/notes`, {text: data})
     },
     updateTask(text, id) {
         return instance.put(`/notes`, text)//id отправлять с запросом

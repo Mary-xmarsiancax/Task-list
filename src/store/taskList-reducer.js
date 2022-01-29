@@ -64,7 +64,6 @@ const taskListReducer = (state = initialState, action) => {
         case SET_TASKS: {
             let copyState = {...state}
             copyState.tasks = action.data
-            console.log(action.data);
             return copyState
         }
         case TASK_DELETE: {
