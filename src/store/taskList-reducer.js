@@ -12,38 +12,8 @@ export const setTasks = (data) => ({type: SET_TASKS, data})
 
 
 let initialState = {
-    tasks: [
-        // {
-        //     id: 1,
-        //     text: "У попа была собака, он ее любил.Она съела кусок мяса, он ее казнил",
-        //     color: "",
-        //     label: "",
-        //     backgroundColor: ""
-        // },
-        // {
-        //     id: 2,
-        //     text: "У кита была собака, он ее любил.Она съела кусок мяса, он ее казнил",
-        //     color: "",
-        //     label: "",
-        //     backgroundColor: ""
-        // },
-        // {
-        //     id: 3,
-        //     text: "У кота была собака, он ее любил.Она съела кусок мяса, он ее казнил",
-        //     color: "",
-        //     label: "",
-        //     backgroundColor: ""
-        // },
-        // {
-        //     id: 4,
-        //     text: "У шута была собака, он ее любил.Она съела кусок мяса, он ее казнил",
-        //     color: "",
-        //     label: "",
-        //     backgroundColor: ""
-        // },
-    ],
+    tasks: [],
     editMode: false
-
 }
 
 const taskListReducer = (state = initialState, action) => {
@@ -76,7 +46,7 @@ const taskListReducer = (state = initialState, action) => {
         }
         case CHANGED_EDIT_MODE: {
             let copyState = {...state}
-            copyState.editMode = action.editMode
+            copyState.editMode = action.mode
             return copyState
         }
         case CHANGE_TEXT: {

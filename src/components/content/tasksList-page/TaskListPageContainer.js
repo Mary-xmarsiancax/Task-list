@@ -20,16 +20,12 @@ const TaskListPageContainer = (props) => {
 
     const dispatch = useDispatch()
 
-    const deactivationEditMode = () => {
-        dispatch(changedEditMode(false))
-    }
 
     const addTask = () => {
         tasksApi.setTask().then(response => {
             tasksApi.getTasks().then(response=>{
                 let data = response.data
                 dispatch(setTasks(data))
-                deactivationEditMode()
             })
             }
         )
@@ -39,7 +35,8 @@ const TaskListPageContainer = (props) => {
         <div className={s.taskListWr}>
             <Button variant="contained" onClick={addTask} className={s.addTasksBtn}>add new Task</Button>
             <TaskBlockZone tasks={props.tasks}
-                           deactivationEditMode={deactivationEditMode}/>
+                           editMode={props.editMode}
+            />
         </div>
     )
 }
