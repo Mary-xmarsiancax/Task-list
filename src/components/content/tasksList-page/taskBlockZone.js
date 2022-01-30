@@ -22,46 +22,64 @@ const TaskBlockZone = (props) => {
         console.log("i dispatch action for changed editMode to true")
     }
 
-    const deactivationEditMode = () => {
-        dispatch(changedEditMode(false))
-    }
-
     const tasksDelete = (id) => {
-        tasksApi.deleteTask(id)
-            .then(response=> {
-                console.log(response);
-            })
-                // if(response.data.statusText === "OK"){
-                    dispatch(taskDelete(id))
+        console.log("i want delete task with id:", id)
+            tasksApi.deleteTask(id)
+                .then(response => {
+                    tasksApi.getTasks()
+                        .then(response => {
+                            dispatch(setTasks(response.data))
+                        })
+                })        // if(response.data.statusText === "OK"){
     }
 
     const changeTextInput = (id, e) => {
         let text = e.target.value;
         dispatch((changeText(id, text)));
     }
-    const onTaskSave = (data) => {
-        tasksApi.setTask(data)
-            .then(response=>{
-               tasksApi.getTasks()
-                   .then(response=>{
-                      dispatch(setTasks(response.data))
-                   })
+    const onTaskSave = (text,id) => {
+        // console.log("i want update task with id:", id)
+        // let idArr = []
+        // for (let i = 0; i < props.tasks.length; i++) {
+        //     idArr.push(props.tasks[i].id)
+        // }
+        // if (idArr.includes(id)) {
+        //     tasksApi.updateTask(text,id)
+        //         .then(response => {
+        //             tasksApi.getTasks()
+        //                 .then(response => {
+        //                     dispatch(setTasks(response.data))
+        //                 })
+        //         })
+        // } else {
+        //     console.log("i call method post");
+        // }
+                tasksApi.updateTask(text,id)
+            .then(response => {
+                tasksApi.getTasks()
+                    .then(response => {
+                        dispatch(setTasks(response.data))
+                        props.deactivationEditMode()
+                    })
             })
-        deactivationEditMode()
+
     }
 
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>
-            <textarea onChange={(event) => changeTextInput(obj.id, event)} className={s.textareaForTasks}
+            <textarea onChange={(event) => changeTextInput(obj.id, event)}
+                      className={s.textareaForTasks}
                       placeholder="you can write there"
                       value={obj.text}
             />
             {selectedId === obj.id &&
             <div className={s.tasksBtn}>
-                <Button size="small" onClick={()=>onTaskSave(obj.text)} className={s.saveTasksBtn} variant="contained"
+                <Button size="small" onClick={() => onTaskSave(obj.text, obj.id)} className={s.saveTasksBtn}
+                        variant="contained"
                         endIcon={<SendIcon/>}>Save</Button>
-                <Button size="small" onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn} variant="outlined"
+                <Button size="small" onClick={() => tasksDelete(obj.id)} className={s.deleteTasksBtn}
+                        variant="outlined"
                         startIcon={<DeleteIcon/>}>Delete</Button>
             </div>
             }

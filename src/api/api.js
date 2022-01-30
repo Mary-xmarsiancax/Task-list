@@ -37,10 +37,10 @@ export const tasksApi = {
         return instance.get(`/notes`)
     },
     setTask(data) {
-        return instance.post(`/notes`, {text: data})
+        return instance.post(`/notes`, {text: ""})
     },
     updateTask(text, id) {
-        return instance.put(`/notes`, text)//id отправлять с запросом
+        return instance.put(`/notes`, { text: text,id: id})
     },
     deleteTask(id) {
         return instance.delete(`/notes`, id)

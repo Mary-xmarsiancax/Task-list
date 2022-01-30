@@ -1,8 +1,7 @@
 import s from "./TaskListPageContainer.module.css"
 import {Button} from "@mui/material";
 import {connect, useDispatch} from "react-redux";
-import {Navigate} from "react-router-dom";
-import {addTask, changedEditMode, changeText, setTasks, taskDelete} from "../../../store/taskList-reducer";
+import {changedEditMode, changeText, setTasks, taskDelete} from "../../../store/taskList-reducer";
 import TaskBlockZone from "./taskBlockZone";
 import {tasksApi} from "../../../api/api";
 import {useEffect} from "react";
@@ -21,16 +20,26 @@ const TaskListPageContainer = (props) => {
 
     const dispatch = useDispatch()
 
+    const deactivationEditMode = () => {
+        dispatch(changedEditMode(false))
+    }
 
-
-    const addTasksInput = () => {
-        dispatch(addTask())
+    const addTask = () => {
+        tasksApi.setTask().then(response => {
+            tasksApi.getTasks().then(response=>{
+                let data = response.data
+                dispatch(setTasks(data))
+                deactivationEditMode()
+            })
+            }
+        )
     }
 
     return (
         <div className={s.taskListWr}>
-            <Button variant="contained" onClick={addTasksInput} className={s.addTasksBtn}>add new Task</Button>
-            <TaskBlockZone tasks={props.tasks}/>
+            <Button variant="contained" onClick={addTask} className={s.addTasksBtn}>add new Task</Button>
+            <TaskBlockZone tasks={props.tasks}
+                           deactivationEditMode={deactivationEditMode}/>
         </div>
     )
 }
@@ -43,7 +52,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     changedEditMode,
     taskDelete,
-    addTask,
     changeText,
     setTasks
 })(TaskListPageContainer);

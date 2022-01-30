@@ -1,10 +1,10 @@
-const ADD_TASK = "ADD_TASK"
+// const ADD_TASK = "ADD_TASK"
 const CHANGED_EDIT_MODE = "CHANGED_EDIT_MODE"
 const TASK_DELETE = "TASK_DELETE"
 const CHANGE_TEXT = "CHANGE_TEXT"
 const SET_TASKS = "SET_TASKS"
 
-export const addTask = () => ({type: ADD_TASK})
+// export const addTask = () => ({type: ADD_TASK})
 export const changedEditMode = (mode) => ({type: CHANGED_EDIT_MODE, mode})
 export const taskDelete = (id) => ({type: TASK_DELETE, id})
 export const changeText = (id, text) => ({type: CHANGE_TEXT, id, text})
@@ -48,19 +48,19 @@ let initialState = {
 
 const taskListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_TASK: {
-            const tasks = [...state.tasks];
-            tasks.push({
-                id: 6,
-                text: "",
-                color: "",
-                label: "",
-                backgroundColor: ""
-            });
-            return {
-                tasks
-            }
-        }
+        // case ADD_TASK: {
+        //     const tasks = [...state.tasks];
+        //     tasks.push({
+        //         id: 1,
+        //         text: "",
+        //         color: "",
+        //         label: "",
+        //         backgroundColor: ""
+        //     });
+        //     return {
+        //         tasks
+        //     }
+        // }
         case SET_TASKS: {
             let copyState = {...state}
             copyState.tasks = action.data
