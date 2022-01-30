@@ -10,9 +10,14 @@ import {tasksApi} from "../../../api/api";
 
 
 const TaskBlockZone = (props) => {
-    console.log(props);
+
     const dispatch = useDispatch()
     const [selectedId, setSelectedId] = useState(undefined)
+
+    const changeTextInput = (id, e) => {
+        let text = e.target.value;
+        dispatch((changeText(id, text)));
+    }
 
     const onSelectedTask = (id) => {
         toActivateEditMode()
@@ -21,11 +26,20 @@ const TaskBlockZone = (props) => {
 
     const toActivateEditMode = (props) => {
         dispatch(changedEditMode(true))
-        console.log("i dispatch action for changed editMode to true")
     }
     const toDeactivateEditMode = (props) => {
         dispatch(changedEditMode(false))
-        console.log("i dispatch action for changed editMode to false")
+    }
+
+    const onTaskSave = (text,id) => {
+        tasksApi.updateTask(text,id)
+            .then(response => {
+                tasksApi.getTasks()
+                    .then(response => {
+                        dispatch(setTasks(response.data))
+                        toDeactivateEditMode()
+                    })
+            })
     }
 
     const tasksDelete = (id) => {
@@ -37,23 +51,9 @@ const TaskBlockZone = (props) => {
                             dispatch(setTasks(response.data))
                             toDeactivateEditMode()
                         })
-                })        // if(response.data.statusText === "OK"){
+                })
     }
 
-    const changeTextInput = (id, e) => {
-        let text = e.target.value;
-        dispatch((changeText(id, text)));
-    }
-    const onTaskSave = (text,id) => {
-                tasksApi.updateTask(text,id)
-            .then(response => {
-                tasksApi.getTasks()
-                    .then(response => {
-                        dispatch(setTasks(response.data))
-                        toDeactivateEditMode()
-                    })
-            })
-    }
 
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
