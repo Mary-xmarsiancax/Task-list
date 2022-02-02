@@ -1,12 +1,15 @@
 const SET_REGISTRATION_DATA = "SET-REGISTRATION-DATA"
-const SET_ERRORS_TEXT = "SET-SET_ERRORS_TEXT-DATA"
+const SET_LOGIN_ERRORS_TEXT = "SET-LOGIN-ERRORS-TEXT"
+const SET_REGISTRATION_ERRORS_TEXT = "SET-REGISTRATION-ERRORS-TEXT"
 export const setRegistrationData = (data) => ({type: SET_REGISTRATION_DATA, data: data});
-export const setErrorsText = (text) => ({type: SET_ERRORS_TEXT, text});
+export const setLoginErrorsText = (text) => ({type: SET_LOGIN_ERRORS_TEXT, text});
+export const setRegistrationErrorsText = (text) => ({type: SET_REGISTRATION_ERRORS_TEXT, text});
 
 let initialState = {
     id: null,
     username: "",
-    textError: ""
+    loginTextError: "",
+    registrationTextError:""
 }
 
 const registrationReducer = (state = initialState, action) => {
@@ -16,9 +19,14 @@ const registrationReducer = (state = initialState, action) => {
             copyState = action.data
             return copyState
         }
-        case SET_ERRORS_TEXT: {
+        case SET_LOGIN_ERRORS_TEXT: {
             let copyState = {...state}
-            copyState.textError = action.text
+            copyState.loginTextError = action.text
+            return copyState
+        }
+        case SET_REGISTRATION_ERRORS_TEXT: {
+            let copyState = {...state}
+            copyState.registrationTextError = action.text
             return copyState
         }
         default:

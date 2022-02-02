@@ -1,9 +1,9 @@
 import React from "react";
 import s from "./LoginForm.module.css"
 import {useForm} from "react-hook-form";
-import {Button, Input, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import {setAuthorizationHeader, usersApi} from "../../../api/api";
-import {setRegistrationData,setErrorsText} from "../../../store/registration-reducer";
+import {setLoginErrorsText, setRegistrationData} from "../../../store/registration-reducer";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -20,8 +20,8 @@ const LoginForm = (props) => {
                     setAuthorizationHeader(token);
                     navigate("/taskList", {replace: true})
                 }, error => {
-                    let textError = error.response.data.errors.error[0]
-                dispatch(setErrorsText(textError))
+                    let loginTextError = error.response.data.errors.error[0]
+                dispatch(setLoginErrorsText(loginTextError))
                 }
             )
     }
@@ -58,7 +58,7 @@ const LoginForm = (props) => {
                     <div>Max length exceeded</div>}
                     {errors.password && errors.password.type === "minLength" &&
                     <div>Min length not reached</div>}
-                    {props.textError && <div className={s.ErrorsMessagesSpan}>{props.textError}</div>}
+                    {props.loginTextError && <div className={s.ErrorsMessagesSpan}>{props.loginTextError}</div>}
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">

@@ -1,5 +1,6 @@
 import RegistrationPage from "./RegistrationPage";
 import {useNavigate} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 
@@ -10,8 +11,12 @@ const RegistrationPageContainer = (props) => {
         navigate ("/taskList", {replace: true})
     }
     return (
-        <RegistrationPage/>
+        <RegistrationPage registrationTextError={props.registrationTextError}/>
     )
 }
 
-export default RegistrationPageContainer;
+const mapStateToProps = (state) => ({
+    registrationTextError: state.registration.registrationTextError
+})
+
+export default connect(mapStateToProps,null)(RegistrationPageContainer);

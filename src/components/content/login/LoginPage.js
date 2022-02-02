@@ -9,7 +9,7 @@ const LoginPage = (props) => {
                 src={NotepadBackground}
                 alt="Notepad logo"/>
             <div className={s.loginFormWr}>
-                <LoginForm textError={props.textError}/>
+                <LoginForm loginTextError={props.loginTextError}/>
             </div>
         </div>
     )

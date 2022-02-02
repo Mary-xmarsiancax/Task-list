@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 
 const LoginPageContainer = (props) => {
     return (
-        <LoginPage textError={props.textError}/>
+        <LoginPage loginTextError={props.loginTextError}/>
     )
 }
 
 const mapStateToProps = (state) => ({
-    textError: state.registration.textError
+    loginTextError: state.registration.loginTextError
 })
 
 export default connect(mapStateToProps, null)(LoginPageContainer);
