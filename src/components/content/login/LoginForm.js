@@ -12,6 +12,7 @@ const LoginForm = () => {
     const dispatch = useDispatch()
     const {register,handleSubmit,formState: { errors }}=useForm()
     const onSubmit = (data) => {
+        console.log(data);
         usersApi.usersLogin(data)
             .then(response=>{
                     let {id, username, token} = response.data;
@@ -32,6 +33,7 @@ const LoginForm = () => {
                         })}/>
                     {errors.username && errors.username.type === "required" &&<div className={s.userNameErrorsSpan}>This is required</div>}
                     {errors.username && errors.username.type === "maxLength" && <div className={s.userNameErrorsSpan}>Max length exceeded</div>}
+                    {errors.username && errors.username.type === "minLength" && <div className={s.userNameErrorsSpan}>Min length not reached</div>}
 
                 </div>
                 <div className={s.password}>
@@ -42,6 +44,7 @@ const LoginForm = () => {
                     })}/>
                     {errors.password && errors.password.type === "required" &&<div className={s.passwordErrorsSpan}>This is required</div>}
                     {errors.password && errors.password.type === "maxLength" && <div className={s.passwordErrorsSpan}>Max length exceeded</div> }
+                    {errors.password && errors.password.type === "minLength" && <div className={s.passwordErrorsSpan}>Min length not reached</div> }
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">
