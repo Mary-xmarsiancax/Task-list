@@ -10,25 +10,38 @@ import {useNavigate} from "react-router-dom";
 const LoginForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register,handleSubmit}=useForm()
+    const {register,handleSubmit,formState: { errors }}=useForm()
     const onSubmit = (data) => {
         usersApi.usersLogin(data)
             .then(response=>{
                     let {id, username, token} = response.data;
-                    dispatch(setRegistrationData({id, username, token,isAuth: true} ))
+                    dispatch(setRegistrationData({id, username, token}))
                     localStorage.setItem("token", token)
                     setAuthorizationHeader(token);
                     navigate ("/taskList", {replace: true})
             })
     }
     return (
-        <div className={s.loginFormWr}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className={s.userName + "" + s.loginInput}>
-                        <TextField  label="username" variant="filled"  {...register("username")}/>
+        <div>
+            <form className={s.loginFormWr} onSubmit={handleSubmit(onSubmit)}>
+                <div className={s.userName}>
+                        <TextField  id="username" label="username" variant="filled"  {...register("username",{
+                            required: true,
+                            maxLength: 25,
+                            minLength: 8
+                        })}/>
+                    {errors.username && errors.username.type === "required" &&<div className={s.userNameErrorsSpan}>This is required</div>}
+                    {errors.username && errors.username.type === "maxLength" && <div className={s.userNameErrorsSpan}>Max length exceeded</div>}
+
                 </div>
-                <div className={s.password + "" + s.loginInput}>
-                    <TextField  label="password" variant="filled" type="password" {...register("password")}/>
+                <div className={s.password}>
+                    <TextField  id="password" label="password" variant="filled" type="password" {...register("password",{
+                        required: true,
+                        maxLength: 25,
+                        minLength: 8
+                    })}/>
+                    {errors.password && errors.password.type === "required" &&<div className={s.passwordErrorsSpan}>This is required</div>}
+                    {errors.password && errors.password.type === "maxLength" && <div className={s.passwordErrorsSpan}>Max length exceeded</div> }
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">
