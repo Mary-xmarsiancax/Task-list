@@ -1,21 +1,32 @@
 .loginFormWr {
+    height: 120px;
     padding-left: 15px;
-    margin: 15px;
+    padding-bottom: 115px;
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
 }
 
 .loginFormWr .userName {
-
+    grid-row: 1/2;
 }
 
+.loginFormWr .userNameErrorsSpan {
+    grid-row: 2/3;
+}
 .loginFormWr .password {
-
+    grid-row: 3/4;
 }
-
+.loginFormWr .passwordErrorsSpan {
+    grid-row: 4/5;
+}
+.loginFormWr .repeatPassword {
+    grid-row: 5/6;
+}
+.loginFormWr .repeatPasswordErrorsSpan {
+    grid-row: 6/7;
+}
 .loginFormWr .loginButton {
-    padding-left: 75px;
-    margin: 10px;
+    padding-left: 65px;
+    grid-row: 7/8;
 }
 
-.loginFormWr .loginInput {
-
-}
