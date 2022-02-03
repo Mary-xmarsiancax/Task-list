@@ -34,6 +34,13 @@
     border: solid 1px red;
     padding: 1px;
 }
+
+.loginFormWr .isIdenticalErrorsSpan{
+    grid-row: 6/7;
+    max-width: 215px;
+    border: solid 1px red;
+    padding: 1px;
+}
 .loginFormWr .loginButton {
     padding-left: 65px;
     grid-row: 7/8;
