@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./LoginForm.module.css"
 import {useForm} from "react-hook-form";
-import {Button, TextField} from "@mui/material";
+import {Alert, Button, TextField} from "@mui/material";
 import {setAuthorizationHeader, usersApi} from "../../../api/api";
 import {setLoginErrorsText, setRegistrationData} from "../../../store/registration-reducer";
 import {useDispatch} from "react-redux";
@@ -37,11 +37,14 @@ const LoginForm = (props) => {
                 </div>
                 <div className={s.userNameErrorsSpan}>
                     {errors.username && errors.username.type === "required" &&
-                    <div >This is required</div>}
+                    // <div>This is required</div>
+                        <Alert severity="info">This is required</Alert>}
                     {errors.username && errors.username.type === "maxLength" &&
-                    <div>Max length exceeded</div>}
+                    // <div>Max length exceeded</div>
+                        <Alert severity="info">Max length exceeded</Alert>}
                     {errors.username && errors.username.type === "minLength" &&
-                    <div>Min length not reached</div>}
+                    // <div>Min length not reached</div>
+                        <Alert severity="info">Min length not reached</Alert>}
                 </div>
                 <div className={s.password}>
                     <TextField id="password" label="password" variant="filled"
@@ -53,12 +56,17 @@ const LoginForm = (props) => {
                 </div>
                 <div className={s.passwordErrorsSpan}>
                     {errors.password && errors.password.type === "required" &&
-                    <div>This is required</div>}
+                    // <div>This is required</div>
+                        <Alert severity="info">This is required</Alert>}
                     {errors.password && errors.password.type === "maxLength" &&
-                    <div>Max length exceeded</div>}
+                    // <div>Max length exceeded</div>
+                        <Alert severity="info">Max length exceeded</Alert>}
                     {errors.password && errors.password.type === "minLength" &&
-                    <div>Min length not reached</div>}
-                    {props.loginTextError && <div className={s.ErrorsMessagesSpan}>{props.loginTextError}</div>}
+                    // <div>Min length not reached</div>
+                        <Alert severity="info">Min length not reached</Alert>}
+                    {props.loginTextError &&
+                    <Alert className={s.ErrorsMessagesSpan} severity="warning">{props.loginTextError}</Alert>}
+                    {/*<div className={s.ErrorsMessagesSpan}>{props.loginTextError}</div>*/}
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">

@@ -43,7 +43,6 @@ const TaskBlockZone = (props) => {
     }
 
     const tasksDelete = (id) => {
-        console.log("i want delete task with id:", id)
             tasksApi.deleteTask(id)
                 .then(response => {
                     tasksApi.getTasks()
