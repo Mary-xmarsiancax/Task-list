@@ -31,8 +31,11 @@ const RegistrationForm = (props) => {
         } else {
             setNotIdentical(false)
         }
-
     }
+    const modalClose = () => {
+        console.log("to close modal window");
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={s.loginFormWr}>
@@ -47,14 +50,11 @@ const RegistrationForm = (props) => {
                 </div>
                 <div className={s.userNameErrorsSpan}>
                     {errors.username && errors.username.type === "required" &&
-                    // <div>This is required</div>
-                        <Alert severity="info">This is required</Alert>}
+                    <Alert severity="info">This is required</Alert>}
                     {errors.username && errors.username.type === "maxLength" &&
-                    // <div>Max length exceeded</div>
-                        <Alert severity="info">Max length exceeded</Alert>}
+                    <Alert severity="info">Max length exceeded</Alert>}
                     {errors.username && errors.username.type === "minLength" &&
-                    // <div>Min length not reached</div>
-                        <Alert severity="info">Min length not reached</Alert>}
+                    <Alert severity="info">Min length not reached</Alert>}
                 </div>
                 <div className={s.password}>
                     <TextField id="password" label="password" variant="filled" type="password" {...register("password",
@@ -67,14 +67,11 @@ const RegistrationForm = (props) => {
                 </div>
                 <div className={s.passwordErrorsSpan}>
                     {errors.password && errors.password.type === "required" &&
-                    // <div>This is required</div>
-                        <Alert severity="info">This is required</Alert>}
+                    <Alert severity="info">This is required</Alert>}
                     {errors.password && errors.password.type === "maxLength" &&
-                    // <div>Max length exceeded</div>
-                        <Alert severity="info">Max length exceeded</Alert>}
+                    <Alert severity="info">Max length exceeded</Alert>}
                     {errors.password && errors.password.type === "minLength" &&
-                    // <div>Min length not reached</div>
-                        <Alert severity="info">Min length not reached</Alert>}
+                    <Alert severity="info">Min length not reached</Alert>}
                 </div>
                 <div className={s.repeatPassword}>
                     <TextField id="repeatPassword" label="repeat password" variant="filled"
@@ -88,19 +85,15 @@ const RegistrationForm = (props) => {
                 </div>
                 <div className={s.repeatPasswordErrorsSpan}>
                     {errors.repeatPassword && errors.repeatPassword.type === "required" &&
-                    // <div>This is required</div>
-                        <Alert severity="info">This is required</Alert>}
+                    <Alert severity="info">This is required</Alert>}
                     {errors.repeatPassword && errors.repeatPassword.type === "maxLength" &&
-                    // <div>Max length exceeded</div>
-                        <Alert severity="info">Max length exceeded</Alert>}
+                    <Alert severity="info">Max length exceeded</Alert>}
                     {errors.repeatPassword && errors.repeatPassword.type === "minLength" &&
-                    // <div>Min length not reached</div>
-                        <Alert severity="info">Min length not reached</Alert>}
+                    <Alert severity="info">Min length not reached</Alert>}
                     {props.registrationTextError &&
-                    <Alert severity="warning">{props.registrationTextError}</Alert>}
-                     {/*<div className={s.registrationMessageErrorsSpan}>{props.registrationTextError}</div>*/}
+                    <Alert severity="warning">{props.registrationTextError}</Alert>
+                    }
                     {!isIdenticalPasswords &&
-                    // <div className={s.isIdenticalErrorsSpan}>This passwords not identical</div>
                     <Alert className={s.isIdenticalErrorsSpan} severity="warning">This passwords not identical</Alert>
                     }
                 </div>

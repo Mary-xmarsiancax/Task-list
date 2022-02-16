@@ -15,7 +15,7 @@ const LoginForm = (props) => {
         usersApi.usersLogin(data)
             .then(response => {
                     let {id, username, token} = response.data;
-                    dispatch(setRegistrationData({id, username, token}))
+                    dispatch(setRegistrationData({id, username}))
                     localStorage.setItem("token", token)
                     setAuthorizationHeader(token);
                     navigate("/taskList", {replace: true})
@@ -37,13 +37,10 @@ const LoginForm = (props) => {
                 </div>
                 <div className={s.userNameErrorsSpan}>
                     {errors.username && errors.username.type === "required" &&
-                    // <div>This is required</div>
                         <Alert severity="info">This is required</Alert>}
                     {errors.username && errors.username.type === "maxLength" &&
-                    // <div>Max length exceeded</div>
                         <Alert severity="info">Max length exceeded</Alert>}
                     {errors.username && errors.username.type === "minLength" &&
-                    // <div>Min length not reached</div>
                         <Alert severity="info">Min length not reached</Alert>}
                 </div>
                 <div className={s.password}>
@@ -56,17 +53,14 @@ const LoginForm = (props) => {
                 </div>
                 <div className={s.passwordErrorsSpan}>
                     {errors.password && errors.password.type === "required" &&
-                    // <div>This is required</div>
                         <Alert severity="info">This is required</Alert>}
                     {errors.password && errors.password.type === "maxLength" &&
-                    // <div>Max length exceeded</div>
                         <Alert severity="info">Max length exceeded</Alert>}
                     {errors.password && errors.password.type === "minLength" &&
                     // <div>Min length not reached</div>
                         <Alert severity="info">Min length not reached</Alert>}
                     {props.loginTextError &&
                     <Alert className={s.ErrorsMessagesSpan} severity="warning">{props.loginTextError}</Alert>}
-                    {/*<div className={s.ErrorsMessagesSpan}>{props.loginTextError}</div>*/}
                 </div>
                 <div className={s.loginButton}>
                     <Button variant="contained" type="submit">
