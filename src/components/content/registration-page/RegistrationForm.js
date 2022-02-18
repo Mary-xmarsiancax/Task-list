@@ -32,9 +32,6 @@ const RegistrationForm = (props) => {
             setNotIdentical(false)
         }
     }
-    const modalClose = () => {
-        console.log("to close modal window");
-    }
 
     return (
         <div>
