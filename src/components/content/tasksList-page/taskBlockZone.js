@@ -53,7 +53,6 @@ const TaskBlockZone = (props) => {
                 })
     }
 
-
     const taskBlockZone = props.tasks.map(obj =>
         <div onClick={() => onSelectedTask(obj.id)} key={obj.id} className={s.taskBlock}>
             <img src={note} alt="noteBackground"/>

@@ -10,7 +10,6 @@ const Header = (props) => {
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")) {
-
             usersApi.getCurrentUser()
                 .then(response => {
                     dispatch(setRegistrationData({...response.data}));

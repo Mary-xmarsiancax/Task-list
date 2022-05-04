@@ -57,7 +57,6 @@ const LoginForm = (props) => {
                     {errors.password && errors.password.type === "maxLength" &&
                         <Alert severity="info">Max length exceeded</Alert>}
                     {errors.password && errors.password.type === "minLength" &&
-                    // <div>Min length not reached</div>
                         <Alert severity="info">Min length not reached</Alert>}
                     {props.loginTextError &&
                     <Alert className={s.ErrorsMessagesSpan} severity="warning">{props.loginTextError}</Alert>}
