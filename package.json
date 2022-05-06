@@ -1,7 +1,7 @@
 {
   "name": "tasks-list",
   "version": "0.1.0",
-  "homepage": "https://Mary-xmarsiancax.github.io/Task-lists",
+  "homepage": "https://Mary-xmarsiancax.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
